@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APLIKASI IONI - Sistem Informasi Persediaan</title>
+    <!-- Keep Tailwind CDN for simplicity in styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -11,7 +12,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
         }
-        /* Simple Error Overlay Style */
         #error-overlay {
             display: none;
             position: fixed;
@@ -29,8 +29,34 @@
             font-family: monospace;
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+    "react/": "https://esm.sh/react@^19.2.1/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.559.0",
+    "recharts": "https://esm.sh/recharts@^3.5.1",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "vite": "https://esm.sh/vite@^7.2.7"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- Error Overlay for Debugging -->
+    <div id="error-overlay">
+        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Something went wrong</h2>
+        <pre id="error-message" style="background: rgba(255,255,255,0.5); padding: 1rem; border-radius: 4px; border: 1px solid #ef9a9a; overflow: auto; max-width: 90%;"></pre>
+        <button onclick="window.location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #c62828; color: white; border: none; border-radius: 4px; cursor: pointer;">Reload Application</button>
+    </div>
+
     <script>
-        // Global Error Handler to catch White Screen issues
+        // Global Error Handler
         window.onerror = function(message, source, lineno, colno, error) {
             const overlay = document.getElementById('error-overlay');
             const msg = document.getElementById('error-message');
@@ -40,32 +66,9 @@
                 console.error('Global Error Caught:', error);
             }
         };
-
-        // Polyfill process
-        window.process = window.process || { env: { API_KEY: '' } };
     </script>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react/": "https://esm.sh/react@18.2.0/",
-    "react-dom": "https://esm.sh/react-dom@18.2.0",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
-    "react-markdown": "https://esm.sh/react-markdown@9.0.1?external=react,react-dom",
-    "recharts": "https://esm.sh/recharts@2.12.3?external=react,react-dom",
-    "@google/genai": "https://esm.sh/@google/genai",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.1/"
-  }
-}
-</script>
-</head>
-<body>
-    <div id="root"></div>
-    <div id="error-overlay">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Something went wrong</h2>
-        <pre id="error-message" style="background: rgba(255,255,255,0.5); padding: 1rem; border-radius: 4px; border: 1px solid #ef9a9a;"></pre>
-        <button onclick="window.location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #c62828; color: white; border: none; border-radius: 4px; cursor: pointer;">Reload Application</button>
-    </div>
+    
+    <!-- Vite Entry Point -->
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
