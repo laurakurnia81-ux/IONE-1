@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     define: {
-      // Polyfill process.env.API_KEY so the code inside services/geminiService.ts works
+      // Prevents "process is not defined" crash in browser
       'process.env.API_KEY': JSON.stringify(env.API_KEY),
     },
     server: {
