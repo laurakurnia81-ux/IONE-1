@@ -1,10 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 import { InventoryItem, ChartData } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-
 export const generateInventoryReport = async (items: InventoryItem[], trends: ChartData[]): Promise<string> => {
   try {
+    // Initialize inside the function to ensure process.env is ready and prevent module loading crashes
+    const apiKey = process.env.API_KEY || '';
+    const ai = new GoogleGenAI({ apiKey });
+
     const prompt = `
       You are an expert inventory analyst for "APLIKASI IONI".
       Analyze the following inventory data and weekly trend data.
@@ -31,6 +33,6 @@ export const generateInventoryReport = async (items: InventoryItem[], trends: Ch
     return response.text || "Unable to generate report at this time.";
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "Error connecting to AI service. Please check your API configuration.";
+    return "Error connecting to AI service. Please check your API configuration or internet connection.";
   }
 };

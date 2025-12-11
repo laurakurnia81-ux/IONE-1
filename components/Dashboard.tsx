@@ -45,7 +45,7 @@ const Dashboard: React.FC = () => {
 
             {/* Alert Bar */}
             {criticalItems.length > 0 && (
-                <div className="bg-amber-500 text-white p-4 rounded-lg shadow-md mb-8 flex flex-col sm:flex-row justify-between items-center gap-4 animate-in slide-in-from-top-2 duration-500">
+                <div className="bg-amber-500 text-white p-4 rounded-lg shadow-md mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <div className="flex items-center gap-3">
                         <div className="bg-white/20 p-2 rounded-full">
                             <AlertTriangle size={24} />
